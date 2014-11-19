@@ -1,0 +1,47 @@
+package:
+  name: pymor
+  version: 9999.9.9
+
+source:
+  git_url: https://github.com/pymor/pymor.git
+      
+requirements:
+  build:
+    - python
+    - numpy
+    - cython
+    - scipy
+    - sphinx
+    - docopt
+    - glumpy
+    - dogpile.cache
+  run:
+    - python
+    - sphinx
+    - numpy
+    - scipy
+    - matplotlib
+    - ipython
+    - ipython-notebook
+    - pyside
+    - dogpile.cache
+    - docopt
+    - glumpy
+    - cython
+
+test:
+  requires:
+    - pytest
+    - pytest-cache
+
+  commands:
+    - pymor-demo
+
+build:
+  no_link:
+    - src/pymor-demo
+  preserve_egg_dir: yes
+
+about:
+  home: https://pymor.org/
+  license: BSD
