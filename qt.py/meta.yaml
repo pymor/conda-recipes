@@ -1,0 +1,34 @@
+{% set name = "qt.py" %}
+{% set version = "1.2.0b3" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://files.pythonhosted.org/packages/5c/b2/f6e51f39f77f55541763ffe3e9dbd0b499dbf5bac025cba0b83be6a2bbb4/Qt.py-1.2.0b3.tar.gz
+  sha256: 9b312c493f2ee0bd0c45edf94596bad23559a94463bfa2272cb0414e9d8486df
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
+
+requirements:
+  host:
+    - pip
+    - python
+  run:
+    - python
+
+about:
+  home: https://github.com/mottosso/Qt
+  license: MIT
+  license_family: MIT
+  license_file:
+  summary: Python 2 & 3 compatibility wrapper around all Qt bindings - PySide, PySide2, PyQt4 and PyQt5.
+  doc_url:
+  dev_url:
+
+extra:
+  recipe-maintainers:
+    - your-github-id-here
