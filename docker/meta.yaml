@@ -1,0 +1,63 @@
+{% set name = "docker" %}
+{% set version = "3.7.0" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 2840ffb9dc3ef6d00876bde476690278ab13fa1f8ba9127ef855ac33d00c3152
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
+
+requirements:
+  host:
+    - docker-pycreds >=0.4.0
+    - pip
+    - python
+    - requests >=2.14.2
+    - six >=1.4.0
+    - websocket-client >=0.32.0
+  run:
+    - docker-pycreds >=0.4.0
+    - python
+    - requests >=2.14.2
+    - six >=1.4.0
+    - websocket-client >=0.32.0
+
+test:
+  imports:
+    - docker
+    - docker.api
+    - docker.models
+    - docker.transport
+    - docker.types
+    - docker.utils
+  requires:
+    - coverage ==4.5.2
+    - flake8 ==3.6.0
+    - mock 
+    - pytest 
+    - pytest-cov 
+    - pytest-timeout 
+
+about:
+  home: https://github.com/docker/docker-py
+  license: Apache Software
+  license_family: APACHE
+  license_file: 
+  summary: A Python library for the Docker Engine API.
+  doc_url: 
+  dev_url: 
+
+extra:
+  recipe-maintainers:
+    - renefritze
+
+extra:
+  channels:
+    - pymor
+
