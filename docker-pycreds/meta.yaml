@@ -1,0 +1,44 @@
+{% set name = "docker-pycreds" %}
+{% set version = "0.4.0" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 6ce3270bcaf404cc4c3e27e4b6c70d3521deae82fb508767870fdbf772d584d4
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
+
+requirements:
+  host:
+    - pip
+    - python
+    - six >=1.4.0
+  run:
+    - python
+    - six >=1.4.0
+
+test:
+  imports:
+    - dockerpycreds
+  requires:
+    - flake8 
+    - pytest 
+    - pytest-cov 
+
+about:
+  home: https://github.com/shin-/dockerpy-creds
+  license: Apache Software
+  license_family: APACHE
+  license_file: 
+  summary: Python bindings for the docker credentials store API
+  doc_url: 
+  dev_url: 
+
+extra:
+  recipe-maintainers:
+    - your-github-id-here
